@@ -7,6 +7,51 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel>
+            <Label Height="30"  Margin="5">To Do's</Label>
+            <Label Height="30"  Margin="5">Wanneer</Label>
+            <Label Height="30"  Margin="5">Wie</Label>
+            <Label Height="30"  Margin="5">Wat</Label>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1">
+            <ComboBox Name="cmdToDo" Height="30" Margin="5" >
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Path=Gegevens}"></TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            
+            <TextBox Name="txtWanneer"
+                     Height="30"
+                     Margin="5"
+                     DataContext="{Binding ElementName=cmdToDo, Path=SelectedValue}"
+                     Text="{Binding Path=Wanneer,
+                ValidatesOnDataErrors=True,
+                UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBox Name="txtWie"
+                     Height="30"
+                     Margin="5"
+                     DataContext="{Binding ElementName=cmdToDo, Path=SelectedValue}"
+                     Text="{Binding Path=Wie,
+                ValidatesOnDataErrors=True,
+                UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBox Name="txtWat" 
+                     Height="30" Margin="5" 
+                     DataContext="{Binding ElementName=cmdToDo, Path=SelectedValue}"
+                     Text="{Binding Path=Wanneer,
+                ValidatesOnDataErrors=True,
+                UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Button Name="btnVerzenden" Height="30" Margin="5" Click="btnVerzenden_Click">Verzenden</Button>
+        </StackPanel>
     </Grid>
 </Window>

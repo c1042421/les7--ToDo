@@ -20,9 +20,28 @@ namespace ToDoOef
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ToDo[] todos;
+
         public MainWindow()
         {
             InitializeComponent();
+            MakeTodos();
+            //cmdToDo.DisplayMemberPath = "Gegevens";
+            cmdToDo.ItemsSource = todos;
+        }
+
+        private void MakeTodos()
+        {
+            todos = new ToDo[4];
+            todos[0] = new ToDo("Jefke", "huiswerk maken", "2017-11-08");
+            todos[1] = new ToDo("Jefke", "sporten", "2017-11-09");
+            todos[2] = new ToDo("Jantje", "afwas doen", "2017-11-10");
+            todos[3] = new ToDo("Jefke", "gras afdoen", "2017-11-10");
+        }
+
+        private void btnVerzenden_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
