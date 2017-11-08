@@ -30,19 +30,22 @@ namespace ToDoOef
         public string Wanneer { get => _wanneer; set {
                 _wanneer = value;
                 RaisePropertyChanged("Wanneer");
+                RaisePropertyChanged("Gegevens");
             }
         }
         public string Wat { get => _wat; set {
                 _wat = value;
                 RaisePropertyChanged("Wat");
+                RaisePropertyChanged("Gegevens");
             }
         }
         public string Wie { get => _wie; set {
                 _wie = value;
                 RaisePropertyChanged("Wie");
+                RaisePropertyChanged("Gegevens");
             }
         }
-        public string Gegevens { get => ToString(); }
+        public string Gegevens { get => string.Format("{0} {1}: {2}", Wanneer, Wie, Wat); }
 
         private void RaisePropertyChanged(string info)
         {
@@ -73,15 +76,19 @@ namespace ToDoOef
             get
             {
                 string result = null;
-                if (String.IsNullOrEmpty("Wie"))
+                bool wieIsEmpty = String.IsNullOrEmpty(Wie) && columnName == "Wie";
+                bool wanneerIsEmty = String.IsNullOrEmpty(Wanneer) && columnName == "Wanneer";
+                bool watIsEmpty = String.IsNullOrEmpty(Wat) && columnName == "Wat";
+
+                if (wieIsEmpty)
                 {
                     result = "Geef een taak in!";
                 }
-                if (String.IsNullOrEmpty("Wanneer"))
+                if (wanneerIsEmty)
                 {
                     result = "Geef een datum in!";
                 }
-                if (String.IsNullOrEmpty("Wie"))
+                if (watIsEmpty)
                 {
                     result = "Geef een naam in!";
                 }
@@ -89,8 +96,7 @@ namespace ToDoOef
             }
         }
 
-        public override string ToString() => string.Format("{0} {1}: {2}", Wanneer, Wie, Wat);
-
+        public override string ToString() => Wie + Environment.NewLine + Wat + Environment.NewLine + Wanneer;
     }
 }
 

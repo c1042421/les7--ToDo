@@ -41,7 +41,14 @@ namespace ToDoOef
 
         private void btnVerzenden_Click(object sender, RoutedEventArgs e)
         {
-
+            ToDo todo = (ToDo)cmdToDo.SelectedValue;
+            if (todo.isValid())
+            {
+                MessageBox.Show(todo.ToString());
+            }else
+            {
+                MessageBox.Show("Niet alle velden zijn ingevuld");
+            }
         }
     }
 }
